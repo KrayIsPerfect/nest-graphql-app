@@ -15,7 +15,7 @@ export const databaseProviders = [
                 port: 5432,
             });
             sequelize.addModels([City, Station]);
-            await sequelize.sync({force: true});
+            await sequelize.sync();
             return sequelize;
         },
     },

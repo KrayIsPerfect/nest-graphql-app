@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Station {
+  name: String!
+  City: City!
+}
+
+type City {
+  name: String!
+  phoneNumber: String!
+  Stations: [Station!]
+}
+
+type Query {
+  city(name: String!): City!
+  cities: [City!]!
+  station(name: String!): Station!
+  stations: [Station!]!
+}
+
+type Mutation {
+  addCity(newCityInput: NewCityInputDto!): City!
+  addStation(newStationInput: NewStationInputDto!): Station!
+}
+
+input NewCityInputDto {
+  name: String!
+  phoneNumber: String
+}
+
+input NewStationInputDto {
+  name: String!
+  City: NewCityInputDto!
+}

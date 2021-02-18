@@ -17,4 +17,8 @@ export class CitiesService {
     async findOneByName(name: string): Promise<City> {
         return await this.CityRepository.findOne<City>({ where: { name } });
     }
+
+    async findAll(): Promise<City[]> {
+        return await this.CityRepository.findAll<City>();
+    }
 }
