@@ -1,7 +1,7 @@
-import {CITY_REPOSITORY} from "../../config/const";
-import {City} from "./station.entity";
+import {STATION_REPOSITORY} from "../../config/const";
+import {Station} from "./station.entity";
 
-export const citiesProviders = [{
-    provide: CITY_REPOSITORY,
-    useValue: City,
+export const stationsProviders = [{
+    provide: STATION_REPOSITORY,
+    useValue: Station,
 }];

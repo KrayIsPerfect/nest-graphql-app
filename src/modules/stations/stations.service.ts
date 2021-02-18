@@ -1,17 +1,20 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { City } from './station.entity';
-import {CITY_REPOSITORY} from "../../config/const";
+import { Station } from './station.entity';
+import {STATION_REPOSITORY} from "../../config/const";
 
 @Injectable()
-export class CitiesService {
+export class StationsService {
 
-    constructor(@Inject(CITY_REPOSITORY) private readonly CityRepository: typeof City) { }
+    constructor(
+        @Inject(STATION_REPOSITORY)
+        private readonly StationRepository: typeof Station
+    ) { }
 
-    async create(City: City): Promise<City> {
-        return await this.CityRepository.create<City>(City);
+    async create(Station: Station): Promise<Station> {
+        return await this.StationRepository.create<Station>(Station);
     }
 
-    async findOneByName(name: string): Promise<City> {
-        return await this.CityRepository.findOne<City>({ where: { name } });
+    async findOneByName(name: string): Promise<Station> {
+        return await this.StationRepository.findOne<Station>({ where: { name } });
     }
 }

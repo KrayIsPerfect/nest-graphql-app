@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
-import { CitiesService } from './cities.service';
-import { citiesProviders } from './cities.providers';
+import { StationsService } from './stations.service';
+import { stationsProviders } from './stations.providers';
+import {DatabaseModule} from "../../db/database.module";
 
 @Module({
-    providers: [CitiesService, ...citiesProviders],
-    exports: [CitiesService],
+    imports: [
+        DatabaseModule,
+    ],
+    providers: [StationsService, ...stationsProviders],
+    exports: [StationsService],
 })
-export class CitiesModule {}
+export class StationsModule {}
