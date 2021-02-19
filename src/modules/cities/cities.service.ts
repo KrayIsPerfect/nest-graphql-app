@@ -1,21 +1,21 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { City } from './City.entity';
-import {CITY_REPOSITORY} from "../../config/const";
 import {Station} from "../stations/station.entity";
 import {StationsService} from "../stations/stations.service";
+import {InjectModel} from "@nestjs/sequelize";
 
 @Injectable()
 export class CitiesService {
 
     constructor(
-        @Inject(CITY_REPOSITORY)
-        private readonly CityRepository: typeof City,
+        @InjectModel(City)
+        private cityModel: typeof City,
         @Inject(StationsService)
         private readonly stationsService: StationsService,
     ) { }
 
     async create(City: City): Promise<City> {
-        const city = await this.CityRepository.create<City>(City);
+        const city = await this.cityModel.create<City>(City);
 
         for (const station of City.Stations) {
             station['cityId'] = city.id
@@ -26,7 +26,7 @@ export class CitiesService {
     }
 
     async findOneByName(name: string): Promise<City> {
-        return await this.CityRepository.findOne<City>({
+        return await this.cityModel.findOne<City>({
             where: { name },
             include: [
                 {
@@ -40,7 +40,7 @@ export class CitiesService {
     }
 
     async findAll(): Promise<City[]> {
-        return await this.CityRepository.findAll<City>({
+        return await this.cityModel.findAll<City>({
             include: [
                 {
                     // @ts-ignore

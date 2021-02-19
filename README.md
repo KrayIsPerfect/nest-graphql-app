@@ -1,3 +1,14 @@
+Требование к приложению:
+
+1. Платформа Node.js -> Nest.js
+2. Кодовая база TypeScript -> +
+3. Любая реляционная база данных -> PostgreSQL
+4. Доступ к БД через ORM (Code First, любой ORM) -> Code First, sequelize
+5. Unit Test на один метод, с реализацией Mock метода. Например unit test на метод в сервисе с вызовом mock метода из репозитория. -> stations.service.spec.ts(findOneByName)
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>

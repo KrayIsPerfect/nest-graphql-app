@@ -1,24 +1,24 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Station } from './station.entity';
-import {STATION_REPOSITORY} from "../../config/const";
 import {City} from "../cities/city.entity";
+import {InjectModel} from "@nestjs/sequelize";
 
 @Injectable()
 export class StationsService {
 
     constructor(
-        @Inject(STATION_REPOSITORY)
-        private readonly StationRepository: typeof Station
+        @InjectModel(Station)
+        private stationModel: typeof Station,
     ) { }
 
     async create(Station: Station): Promise<Station> {
-        const station = await this.StationRepository.create<Station>(Station);
+        const station = await this.stationModel.create<Station>(Station);
 
         return await this.findOneByName(station.name);
     }
 
     async findOneByName(name: string): Promise<Station> {
-        return await this.StationRepository.findOne<Station>({
+        return await this.stationModel.findOne<Station>({
             where: { name },
             include: [
                 {
@@ -32,7 +32,7 @@ export class StationsService {
     }
 
     async findAll(): Promise<Station[]> {
-        return await this.StationRepository.findAll<Station>({
+        return await this.stationModel.findAll<Station>({
             include: [
                 {
                     // @ts-ignore

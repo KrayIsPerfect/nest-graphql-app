@@ -1,17 +1,16 @@
 import { Module } from '@nestjs/common';
 import { StationsService } from './stations.service';
-import { stationsProviders } from './stations.providers';
-import {DatabaseModule} from "../../db/database.module";
 import {StationsResolver} from "./stations.resolver";
+import {SequelizeModule} from "@nestjs/sequelize";
+import {Station} from "./station.entity";
 
 @Module({
     imports: [
-        DatabaseModule,
+        SequelizeModule.forFeature([Station]),
     ],
     providers: [
         StationsResolver,
         StationsService,
-        ...stationsProviders
     ],
     exports: [StationsService],
 })
