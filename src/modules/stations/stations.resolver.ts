@@ -28,9 +28,7 @@ export class StationsResolver {
     ): Promise<Station> {
         let station = {};
         station['name'] = newStationInput.name;
-        station['City'] = {
-            name: newStationInput.City.name
-        };
+        station['cityId'] = newStationInput.cityId;
 
         return await this.stationsService.create(station as Station);
     }

@@ -1,4 +1,4 @@
-import {Table, Column, Model, BelongsTo,} from 'sequelize-typescript';
+import {Table, Column, Model, BelongsTo} from 'sequelize-typescript';
 import {City} from "../cities/city.entity";
 import {Field, ObjectType} from "@nestjs/graphql";
 

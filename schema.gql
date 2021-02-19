@@ -2,15 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Station {
-  name: String!
-  City: City!
-}
-
 type City {
   name: String!
   phoneNumber: String!
   Stations: [Station!]
+}
+
+type Station {
+  name: String!
+  City: City!
 }
 
 type Query {
@@ -27,10 +27,11 @@ type Mutation {
 
 input NewCityInputDto {
   name: String!
-  phoneNumber: String
+  phoneNumber: String!
+  Stations: [NewStationInputDto!]
 }
 
 input NewStationInputDto {
   name: String!
-  City: NewCityInputDto!
+  cityId: Float
 }

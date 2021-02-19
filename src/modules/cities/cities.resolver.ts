@@ -29,6 +29,12 @@ export class CitiesResolver {
         let city = {};
         city['name'] = newCityInput.name;
         city['phoneNumber'] = newCityInput.phoneNumber;
+        city['Stations'] = [];
+        if (newCityInput.Stations) {
+            for (const station of newCityInput.Stations) {
+                city['Stations'].push({name: station.name});
+            }
+        }
 
         return await this.citiesService.create(city as City);
     }

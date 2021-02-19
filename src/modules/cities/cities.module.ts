@@ -4,10 +4,12 @@ import { citiesProviders } from './cities.providers';
 import {DatabaseModule} from "../../db/database.module";
 import {CitiesResolver} from "./cities.resolver";
 import {CitiesController} from "./cities.controller";
+import {StationsModule} from "../stations/stations.module";
 
 @Module({
     imports: [
         DatabaseModule,
+        StationsModule,
     ],
     controllers: [
       CitiesController
@@ -15,7 +17,7 @@ import {CitiesController} from "./cities.controller";
     providers: [
         CitiesResolver,
         CitiesService,
-        ...citiesProviders
+        ...citiesProviders,
     ],
     exports: [CitiesService],
 })
